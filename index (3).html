@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>João Silva | Corretor de Imóveis</title>
+<meta name="description" content="Corretor de imóveis. Seu sonho tem endereço — fale comigo pelo WhatsApp ou filtre o imóvel que você procura.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16231F;
+    --paper:#F3EEE4;
+    --paper-dim:#EAE3D4;
+    --brass:#A9793C;
+    --brass-light:#C79A5C;
+    --moss:#3B4F3D;
+    --line:#C9BEA6;
+    --white:#FBF9F4;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
+
+  /* ---------- TOPBAR ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,238,228,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:76px;
+  }
+  .brand{
+    font-family:'Fraunces',serif;
+    font-size:1.15rem;
+    font-weight:500;
+  }
+  .brand span{color:var(--brass);}
+  nav{display:flex;gap:32px;font-size:0.95rem;}
+  nav a{padding:6px 2px;border-bottom:1px solid transparent;transition:border-color .2s ease;}
+  nav a:hover{border-color:var(--brass);}
+  @media (max-width:700px){ nav{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 96px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:64px;
+    align-items:center;
+  }
+  .eyebrow-line{
+    display:flex;align-items:center;gap:14px;
+    color:var(--moss);
+    font-size:0.92rem;
+    margin-bottom:22px;
+  }
+  .eyebrow-line::before{
+    content:"";
+    width:34px;height:1px;background:var(--brass);
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,4.6vw,3.6rem);
+    max-width:12ch;
+    margin-bottom:26px;
+  }
+  .hero p.lede{
+    font-size:1.15rem;
+    max-width:46ch;
+    color:#3A342A;
+    margin-bottom:38px;
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:44px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 28px;
+    font-size:0.98rem;
+    font-weight:600;
+    border-radius:2px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .2s ease, color .2s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--ink);color:var(--white);}
+  .btn-primary:hover{background:var(--moss);}
+  .btn-outline{border-color:var(--ink);color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--white);}
+
+  .agent-plate{
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .agent-photo{
+    position:relative;
+    aspect-ratio:4/5;
+    border:1px solid var(--brass);
+    border-radius:2px;
+    background:linear-gradient(160deg,#2A3A2C 0%, #16231F 60%, #0F1712 100%);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .agent-photo .monogram{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:6.5rem;
+    color:var(--brass-light);
+    opacity:0.9;
+  }
+  .agent-photo::after{
+    content:"";
+    position:absolute;inset:0;
+    background:repeating-linear-gradient(115deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 6px);
+  }
+  .agent-caption{
+    display:flex;justify-content:space-between;
+    font-size:0.85rem;color:var(--moss);
+    border-top:1px solid var(--line);
+    padding-top:10px;
+  }
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .agent-plate{order:-1;max-width:280px;}
+  }
+
+  /* ---------- FILTRO ---------- */
+  .filtro{
+    padding:96px 0;
+    background:var(--ink);
+    color:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .filtro-head{max-width:52ch;margin-bottom:52px;}
+  .filtro-head .eyebrow-line{color:var(--brass-light);}
+  .filtro-head .eyebrow-line::before{background:var(--brass-light);}
+  .filtro-head h2{font-size:clamp(2rem,3.6vw,2.6rem);color:var(--white);margin-bottom:16px;}
+  .filtro-head p{color:#CBC6BA;font-size:1.05rem;max-width:48ch;}
+
+  .ficha{
+    background:var(--paper);
+    color:var(--ink);
+    border:1px solid var(--brass);
+    padding:44px;
+    max-width:760px;
+  }
+  .ficha-title{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--line);
+    padding-bottom:16px;margin-bottom:28px;
+  }
+  .ficha-title span{font-size:0.85rem;color:var(--moss);}
+  .field-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:22px 24px;
+  }
+  .field{display:flex;flex-direction:column;gap:8px;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-size:0.85rem;color:var(--moss);}
+  .field select, .field input{
+    font-family:'Archivo',sans-serif;
+    font-size:1rem;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    background:var(--white);
+    color:var(--ink);
+    border-radius:1px;
+  }
+  .field select:focus, .field input:focus{border-color:var(--brass);}
+  .ficha .btn{margin-top:30px;width:100%;justify-content:center;}
+  .form-note{font-size:0.82rem;color:#7A7362;margin-top:14px;}
+  @media (max-width:640px){
+    .field-grid{grid-template-columns:1fr;}
+    .ficha{padding:30px 24px;}
+  }
+
+  /* ---------- HISTORIA ---------- */
+  .historia{padding:104px 0;}
+  .historia .wrap{
+    display:grid;grid-template-columns:0.8fr 1.2fr;gap:72px;
+  }
+  .historia .agent-photo-2{
+    aspect-ratio:3/4;
+    border:1px solid var(--brass);
+    background:linear-gradient(160deg,#EFE7D6,#DCD0B4);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .historia .agent-photo-2 .monogram{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:5.5rem;color:var(--brass);
+  }
+  .historia h2{font-size:clamp(2rem,3.4vw,2.5rem);margin-bottom:28px;max-width:14ch;}
+  .historia .quote{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:1.35rem;color:var(--moss);
+    max-width:34ch;margin-bottom:30px;
+    padding-left:20px;border-left:2px solid var(--brass);
+  }
+  .historia p{max-width:62ch;color:#3A342A;margin-bottom:18px;font-size:1.02rem;}
+  .stats{
+    display:flex;gap:0;margin:38px 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .stat{padding:22px 28px 22px 0;border-right:1px solid var(--line);flex:1;}
+  .stat:last-child{border-right:none;}
+  .stat b{display:block;font-family:'Fraunces',serif;font-size:1.9rem;color:var(--brass);}
+  .stat span{font-size:0.85rem;color:var(--moss);}
+  @media (max-width:860px){
+    .historia .wrap{grid-template-columns:1fr;}
+    .historia .agent-photo-2{max-width:220px;}
+    .stats{flex-direction:column;}
+    .stat{border-right:none;border-bottom:1px solid var(--line);}
+    .stat:last-child{border-bottom:none;}
+  }
+
+  footer{
+    background:var(--ink);color:var(--paper);
+    padding:36px 0;font-size:0.85rem;
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#B9B39F;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">João Silva <span>| Imóveis</span></div>
+    <nav>
+      <a href="#hero">Início</a>
+      <a href="#filtro">Filtrar imóvel</a>
+      <a href="#historia">História</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== SEÇÃO 1 — HERO ===================== -->
+<section id="hero" class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow-line">Corretor de imóveis · CRECI 00000</div>
+      <h1>Seu sonho tem endereço.</h1>
+      <p class="lede">Ajudo você a encontrar a casa, o apartamento ou o terreno certo — com atendimento próximo, do primeiro contato até a chave na mão.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" id="whatsapp-hero" href="#" target="_blank" rel="noopener">Falar comigo</a>
+        <a class="btn btn-outline" href="#filtro">Filtrar imóveis</a>
+      </div>
+    </div>
+
+    <!-- Substitua o bloco .agent-photo por uma <img src="sua-foto.jpg" alt="João Silva"> quando tiver a foto real -->
+    <div class="agent-plate">
+      <div class="agent-photo"><span class="monogram">JS</span></div>
+      <div class="agent-caption">
+        <span>João Silva</span>
+        <span>Corretor de Imóveis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SEÇÃO 2 — FILTRO ===================== -->
+<section id="filtro" class="filtro">
+  <div class="wrap">
+    <div class="filtro-head">
+      <div class="eyebrow-line">Encontre o imóvel ideal</div>
+      <h2>Me conte o que você procura</h2>
+      <p>Preencha as informações abaixo e envie direto pelo WhatsApp. Eu retorno com opções que combinam com o que você precisa.</p>
+    </div>
+
+    <form class="ficha" id="filtro-form">
+      <div class="ficha-title">
+        <strong>Ficha de interesse</strong>
+        <span>preenchimento rápido</span>
+      </div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="tipo">Tipo de imóvel</label>
+          <select id="tipo" required>
+            <option value="">Selecione</option>
+            <option>Casa</option>
+            <option>Apartamento</option>
+            <option>Terreno</option>
+            <option>Fazenda / Sítio</option>
+            <option>Comercial</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="quartos">Quartos</label>
+          <select id="quartos">
+            <option value="">Indiferente</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4 ou mais</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="bairro">Bairro / Região</label>
+          <input id="bairro" type="text" placeholder="Ex: Centro, Jardim das Flores..." required>
+        </div>
+
+        <div class="field">
+          <label for="faixa">Faixa de valor</label>
+          <select id="faixa">
+            <option value="">Indiferente</option>
+            <option>Até R$ 200 mil</option>
+            <option>R$ 200 mil – R$ 400 mil</option>
+            <option>R$ 400 mil – R$ 700 mil</option>
+            <option>Acima de R$ 700 mil</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="nome">Seu nome</label>
+          <input id="nome" type="text" placeholder="Como posso te chamar?">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Enviar via WhatsApp</button>
+      <p class="form-note">Ao enviar, você será direcionado ao WhatsApp com sua mensagem já preenchida.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== SEÇÃO 3 — HISTÓRIA ===================== -->
+<section id="historia" class="historia">
+  <div class="wrap">
+    <div class="agent-photo-2"><span class="monogram">JS</span></div>
+
+    <div>
+      <h2>Quem está do outro lado do WhatsApp</h2>
+      <p class="quote">Corretor não vende imóvel — ajuda a decidir uma das escolhas mais importantes da vida de uma pessoa.</p>
+      <p>Comecei nesse mercado há mais de dez anos, batendo de porta em porta antes de entender que o meu trabalho não era "vender", era ouvir. Cada família tem uma urgência diferente: uma quer sair do aluguel, outra está crescendo e precisa de mais espaço, outra está realizando o primeiro investimento.</p>
+      <p>Com o tempo, montei uma forma de trabalhar simples: entender a real necessidade antes de mostrar qualquer opção, ser transparente sobre prós e contras de cada imóvel, e acompanhar de perto até a assinatura — sem pressa e sem letras miúdas.</p>
+
+      <div class="stats">
+        <div class="stat"><b>10+</b><span>anos de experiência</span></div>
+        <div class="stat"><b>300+</b><span>famílias atendidas</span></div>
+        <div class="stat"><b>100%</b><span>atendimento direto</span></div>
+      </div>
+
+      <a class="btn btn-primary" id="whatsapp-footer" href="#" target="_blank" rel="noopener">Falar comigo no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>João Silva — Corretor de Imóveis · CRECI 00000</span>
+    <span>Atendimento por WhatsApp</span>
+  </div>
+</footer>
+
+<script>
+  // ⚠️ Troque pelo número real de WhatsApp, no formato internacional sem espaços/símbolos.
+  const WHATSAPP_NUMBER = "5511999999999";
+
+  function buildWhatsAppLink(message){
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  }
+
+  // Botões fixos do topo e do rodapé
+  document.getElementById('whatsapp-hero').href = buildWhatsAppLink(
+    "Olá! Vim pelo site e gostaria de mais informações."
+  );
+  document.getElementById('whatsapp-footer').href = buildWhatsAppLink(
+    "Olá! Vim pelo site e gostaria de falar com você."
+  );
+
+  // Formulário de filtro
+  document.getElementById('filtro-form').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const tipo = document.getElementById('tipo').value;
+    const quartos = document.getElementById('quartos').value;
+    const bairro = document.getElementById('bairro').value.trim();
+    const faixa = document.getElementById('faixa').value;
+    const nome = document.getElementById('nome').value.trim();
+
+    if(!tipo || !bairro){
+      alert('Por favor, selecione o tipo de imóvel e informe o bairro desejado.');
+      return;
+    }
+
+    let msg = "Olá! Estou procurando um imóvel com estas características:\n";
+    msg += `Tipo: ${tipo}\n`;
+    if(quartos) msg += `Quartos: ${quartos}\n`;
+    msg += `Bairro/Região: ${bairro}\n`;
+    if(faixa) msg += `Faixa de valor: ${faixa}\n`;
+    if(nome) msg += `Nome: ${nome}\n`;
+
+    window.open(buildWhatsAppLink(msg), '_blank');
+  });
+</script>
+
+</body>
+</html>
